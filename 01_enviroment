@@ -1,0 +1,22 @@
+# 创建conda环境
+conda create -n effector_pred python=3.9
+conda activate effector_pred
+
+# 安装必需软件（部分需从源码安装）
+conda install -c bioconda blast hmmer diamond seqkit
+pip install biopython pandas numpy scikit-learn joblib
+
+# 安装EffectorP（需从官网下载模型文件）
+git clone https://github.com/jcch/EffectorP.git
+cd EffectorP && python setup.py install
+
+# 安装SignalP（需学术许可，此处用DeepSig作为替代）
+pip install deepsig
+
+# 安装DeepBioHP（需下载预训练模型）
+git clone https://github.com/DeepBioHP/DeepBioHP.git
+cd DeepBioHP && pip install -r requirements.txt
+
+# 安装InterProScan（需单独下载，此处用其REST API替代）
+# 或使用更轻量的PfamScan
+conda install -c bioconda pfam_scan
